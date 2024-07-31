@@ -21,7 +21,7 @@ export const fetchNewsApiArticles = async (
       q: keyword ? keyword : "news",
       category: categories.length ? categories.join(",") : undefined,
       from: from ? from : undefined,
-      apiKey: process.env.NEWS_API_KEY,
+      apiKey: process.env.REACT_APP_NEWS_API_KEY,
     },
   });
 

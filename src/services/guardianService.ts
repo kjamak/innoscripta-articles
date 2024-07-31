@@ -21,7 +21,7 @@ export const fetchGuardianArticles = async (
       q: keyword ? keyword : "news",
       "from-date": from ? from : undefined,
       section: categories.length ? categories.join(",") : undefined,
-      "api-key": process.env.GUARDIAN_API_KEY,
+      "api-key": process.env.REACT_APP_GUARDIAN_API_KEY,
     },
   });
 

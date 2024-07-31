@@ -31,7 +31,7 @@ export const fetchNYTimesArticles = async (
           ? `section_name:("${categories.join('","')}")`
           : undefined,
         begin_date: from ? from : undefined,
-        "api-key": process.env.NYTIMES_API_KEY,
+        "api-key": process.env.REACT_APP_NYTIMES_API_KEY,
       },
     }
   );
