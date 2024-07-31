@@ -1,8 +1,6 @@
 import axios from "axios";
 import { Article } from "../types";
 
-const NEWS_API_KEY = "e4dd39fd250a40d48a8e8e98dffa4ac0"; // Replace with your actual NewsAPI key
-
 export const fetchNewsApiArticles = async (
   keyword: string = "",
   categories: string[],
@@ -23,7 +21,7 @@ export const fetchNewsApiArticles = async (
       q: keyword ? keyword : "news",
       category: categories.length ? categories.join(",") : undefined,
       from: from ? from : undefined,
-      apiKey: NEWS_API_KEY,
+      apiKey: process.env.NEWS_API_KEY,
     },
   });
 

@@ -8,6 +8,11 @@ import {
 
 interface SearchFilterBarProps {
   onSearch: (keyword: string, filters: Filters) => void;
+  filterOptions: {
+    dateOptions: Array<{ value: string; label: string }>;
+    categoryOptions: Array<{ value: string; label: string }>;
+    sourceOptions: Array<{ value: string; label: string }>;
+  };
 }
 
 interface Filters {
@@ -16,7 +21,10 @@ interface Filters {
   source: string;
 }
 
-const SearchFilterBar: React.FC<SearchFilterBarProps> = ({ onSearch }) => {
+const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
+  onSearch,
+  filterOptions,
+}) => {
   const [keyword, setKeyword] = useState("");
   const [filters, setFilters] = useState<Filters>({
     date: "",
@@ -41,27 +49,33 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({ onSearch }) => {
         onChange={(e) => setFilters({ ...filters, date: e.target.value })}
       >
         <option value="">All Dates</option>
-        <option value="last24hours">Last 24 hours</option>
-        <option value="lastweek">Last Week</option>
-        <option value="lastmonth">Last Month</option>
+        {filterOptions.dateOptions.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
       </Select>
       <Select
         value={filters.category}
         onChange={(e) => setFilters({ ...filters, category: e.target.value })}
       >
         <option value="">All Categories</option>
-        <option value="technology">Technology</option>
-        <option value="business">Business</option>
-        <option value="sports">Sports</option>
+        {filterOptions.categoryOptions.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
       </Select>
       <Select
         value={filters.source}
         onChange={(e) => setFilters({ ...filters, source: e.target.value })}
       >
         <option value="">All Sources</option>
-        <option value="newsapi">NewsAPI</option>
-        <option value="theguardian">The Guardian</option>
-        <option value="nytimes">New York Times</option>
+        {filterOptions.sourceOptions.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
       </Select>
       <Button onClick={handleSearch}>Search</Button>
     </SearchFilterContainer>

@@ -1,8 +1,6 @@
 import axios from "axios";
 import { Article } from "../types";
 
-const GUARDIAN_API_KEY = "0ac6ae62-2b9c-4b7c-8207-88db93d357be"; // Replace with your actual Guardian API key
-
 export const fetchGuardianArticles = async (
   keyword: string = "",
   categories: string[],
@@ -23,7 +21,7 @@ export const fetchGuardianArticles = async (
       q: keyword ? keyword : "news",
       "from-date": from ? from : undefined,
       section: categories.length ? categories.join(",") : undefined,
-      "api-key": GUARDIAN_API_KEY,
+      "api-key": process.env.GUARDIAN_API_KEY,
     },
   });
 

@@ -1,8 +1,6 @@
 import axios from "axios";
 import { Article } from "../types";
 
-const NYTIMES_API_KEY = "rciyJdgnWOtQfeEWyUdD4HJ6hFhNmwTp"; // Replace with your actual New York Times API key
-
 export const fetchNYTimesArticles = async (
   keyword: string = "",
   categories: string[],
@@ -33,7 +31,7 @@ export const fetchNYTimesArticles = async (
           ? `section_name:("${categories.join('","')}")`
           : undefined,
         begin_date: from ? from : undefined,
-        "api-key": NYTIMES_API_KEY,
+        "api-key": process.env.NYTIMES_API_KEY,
       },
     }
   );

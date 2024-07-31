@@ -3,6 +3,7 @@ import SearchFilterBar from "../components/SearchFilterBar/SearchFilterBar";
 import ArticleList from "../components/ArticleList/ArticleList";
 import { useFetchArticles } from "../hooks/useFetchArticles";
 import { Article } from "../types";
+import { sourceOptions, categoryOptions, dateOptions } from "../enums";
 import {
   LoadingText,
   SearchPageContainer,
@@ -39,11 +40,16 @@ const SearchPage: React.FC = () => {
   return (
     <SearchPageContainer>
       <h1>Search Articles</h1>
-      <SearchFilterBar onSearch={handleSearch} />
+      <SearchFilterBar
+        onSearch={handleSearch}
+        filterOptions={{ dateOptions, categoryOptions, sourceOptions }}
+      />
       {isLoading && <LoadingText>Loading articles...</LoadingText>}
-      <SearchResultContainer>
-        <ArticleList articles={articles as Article[]} />
-      </SearchResultContainer>
+      {!isLoading && (
+        <SearchResultContainer>
+          <ArticleList articles={articles as Article[]} />
+        </SearchResultContainer>
+      )}
     </SearchPageContainer>
   );
 };
